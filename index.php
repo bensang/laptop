@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 ob_start();
 require "lib/db.php";
@@ -77,8 +77,8 @@ if(isset($_SESSION['giohang'])){
 ?>
 <?php
 if(isset($_POST['btnLogin'])){
-	$user = $_POST['user'];
-	$pass = $_POST['pass'];
+	$user = mysqli_real_escape_string($conn,strip_tags(trim($_POST['user'])));
+    	$pass = mysqli_real_escape_string($conn,strip_tags(trim($_POST['pass'])));
 	$pass = md5($pass);
 	global $conn;
 	$qr = "SELECT * FROM thanhvien WHERE user = '$user' AND pass = '$pass'";
